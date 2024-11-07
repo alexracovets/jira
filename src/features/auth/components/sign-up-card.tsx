@@ -12,25 +12,24 @@ import { DottedSeparator } from "@/components/dotted-separator";
 import { Button } from "@/components/ui/button";
 import { Form } from '@/components/ui/form';
 
-const formSchema = z.object({
-    name: z.string().min(1, "Required"),
-    email: z.string().email(),
-    password: z.string().min(8, "Minimum of 8 characters required"),
-})
+import { useRegister } from "@/features/auth/api/use-register";
+import { registerSchema } from "@/features/auth/schemas";
 
 export const SignUpCard = () => {
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    const { mutate } = useRegister();
+
+    const form = useForm<z.infer<typeof registerSchema>>({
+        resolver: zodResolver(registerSchema),
         defaultValues: {
             name: "",
             email: "",
             password: ""
         }
-    })
+    });
 
-    const onSubmit = (values: z.infer<typeof formSchema>) => {
-        console.log(values)
-    }
+    const onSubmit = (values: z.infer<typeof registerSchema>) => {
+        mutate({ json: values });
+    };
 
     return (
         <Card className="w-full h-full md:w-[487px] border-none shadow-none">

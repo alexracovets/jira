@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google';
 import type { Metadata } from "next";
 
+import { QueryProvider } from '@/components/query-provider';
 import { cn } from '@/lib/utils';
 
 import "./globals.css";
@@ -17,7 +18,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en">
       <body className={cn(inter.className, "antialiased min-h-screen")}
       >
-        {children}
+        <QueryProvider>
+          {children}
+        </QueryProvider>
       </body>
     </html>
   );
