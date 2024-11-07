@@ -24,7 +24,6 @@ function getQueryClient() {
     }
 }
 
-
 export const QueryProvider = ({ children }: ChildrenProps) => {
     const queryClient = getQueryClient()
 
