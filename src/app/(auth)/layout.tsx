@@ -6,12 +6,10 @@ import Link from "next/link";
 import React from "react";
 
 import { Button } from "@/components/ui/button";
+import { ChildrenProps } from "@/types/children";
+ 
 
-interface AuthLayoutProps {
-    children: React.ReactNode;
-}
-
-const AuthLayout = ({ children }: AuthLayoutProps) => {
+const AuthLayout = ({ children }: ChildrenProps) => {
     const pathname = usePathname();
     const isSignIn = pathname === "/sign-in";
 
